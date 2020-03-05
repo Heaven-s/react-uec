@@ -10,7 +10,7 @@ import routes from '../router'
 import Menu from './menu';
 import Navbar from './navbar';
 
-function RouteWithSubRoutes(route: any) {
+function RouteWithSubRoutes(route) {
   
   return (
     <Route
