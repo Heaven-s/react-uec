@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
 
-import Uec from '../utils/uec'
+import { Uec, history } from '../utils'
 
 const {
   MenuUnfoldOutlined,
@@ -10,11 +9,10 @@ const {
   DesktopOutlined
 } = Uec.Icons
 
+
 function Page() {
   
   const [collapsed, setCollapsed] = useState(false)
-
-  let history = useHistory();
 
   useEffect(() => {
   })

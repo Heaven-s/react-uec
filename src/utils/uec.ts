@@ -13,10 +13,11 @@ const Icons = {
   DesktopOutlined
 }
 
-const Uec = {
+const uec = {
   Icons,
   Menu,
   Button
 }
 
-export default Uec
+export const Uec = uec
+export default uec
