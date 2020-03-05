@@ -1,0 +1,40 @@
+.ky-erp {
+  // 注意mac chrome的滚动条默认宽度为 15px 而 windows chrome滚动条宽度为 17px
+  // https://codepen.io/sambible/post/browser-scrollbar-widths
+  .el-table .el-table__body-wrapper {
+    &::-webkit-scrollbar {
+      width: 15px;
+      height: 15px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      cursor: pointer;
+      border-radius: 8px;
+      background-color: #aa90e8;
+      border: 1px solid white;
+      //border-bottom-width: 2px;
+    }
+
+    &::-webkit-scrollbar-track {
+      border: 0 solid transparent;
+      background-color: #fff;
+    }
+
+    &::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-button {
+      width: 0;
+      height: 0;
+      display: none;
+    }
+  }
+  // for windows
+  /*&-win .el-table .el-table__body-wrapper {
+    &::-webkit-scrollbar {
+      width: 17px;
+      height: 17px;
+    }
+  }*/
+}
