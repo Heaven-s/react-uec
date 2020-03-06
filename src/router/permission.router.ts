@@ -3,7 +3,16 @@ import { lazy } from 'react';
 const Account = lazy(() => import('../pages/permission/account'));
 const Role = lazy(() => import('../pages/permission/role'));
 
-const routes = [
+interface routerInterface {
+  path: string,
+  component: object,
+  meta: {
+    tag: string,
+    title: string
+  }
+}
+
+const routes: routerInterface[] = [
   {
     path: '/permission/account',
     component: Account,

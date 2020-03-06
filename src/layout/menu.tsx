@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { history } from 'utils'
+// import { useHistory } from 'hooks'
 import Uec from 'uec'
 
 const {
@@ -13,6 +14,8 @@ const {
 function Page() {
   
   const [collapsed, setCollapsed] = useState(false)
+
+  // let history = useHistory();
 
   useEffect(() => {
   })
