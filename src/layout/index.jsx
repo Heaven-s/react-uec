@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import './index.scss';
-import routes from '../router'
+import routes from 'router'
 import Menu from './menu';
 import Navbar from './navbar';
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { history } from '../utils'
-import Uec from '../uec'
+import { history } from 'utils'
+import Uec from 'uec'
 
 const {
   MenuUnfoldOutlined,
