@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-import { Uec, history } from '../utils'
+import { history } from '../utils'
+import Uec from '../uec'
 
 const {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   PieChartOutlined,
   DesktopOutlined
-} = Uec.Icons
-
+} = Uec
 
 function Page() {
   
