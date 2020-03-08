@@ -3,6 +3,8 @@ import React from 'react';
 
 function Page() {
   
+  console.log('role-page')
+  
   return (
     <div className="role-page">
       角色管理

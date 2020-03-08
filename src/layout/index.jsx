@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   HashRouter as Router,
   Switch,
@@ -34,13 +34,14 @@ function RouteWithSubRoutes(route) {
 }
 
 function Page() {
+  const [keepAliveList, _] = useState(['permission-role', 'permission-account'])
 
   useEffect(() => {
   })
 
   return (
     <Router>
-      <Provider>
+      <Provider include={keepAliveList}> 
         <main className="wrapper">
           <header className="header">
             <h1>
@@ -53,13 +54,18 @@ function Page() {
             <Menu />
             <div className="content">
               <Navbar />
-              <Suspense fallback={<div>Loading...</div>}>
+              {/* <Suspense fallback={<div>Loading...</div>}>
                 <Switch>
                   {routes.map((route, i) => (
                     <RouteWithSubRoutes key={i} {...route} />
                   ))}
                 </Switch>
-              </Suspense>
+              </Suspense> */}
+              <Switch>
+                {routes.map((route, i) => (
+                  <RouteWithSubRoutes key={i} {...route} />
+                ))}
+              </Switch>
             </div>
           </section>
         </main>
