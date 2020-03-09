@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import {
   HashRouter as Router,
   Switch,
@@ -7,7 +7,7 @@ import {
 import {
   Provider,
   KeepAlive
-} from 'react-keep-alive';
+} from 'react-component-keepalive';
 
 import './index.scss';
 import routes from 'router'
@@ -20,8 +20,6 @@ function RouteWithSubRoutes(route) {
     return path.substring(1).replace(/\/:/g, '/').replace(/\//g, '-')
   }
   const name = createRouteName(route.path)
-  console.log('name', name)
-  console.log('route.path', route.path)
   return (
     <Route
       path={route.path}
@@ -34,7 +32,7 @@ function RouteWithSubRoutes(route) {
 }
 
 function Page() {
-  const [keepAliveList, _] = useState(['permission-role', 'permission-account'])
+  const [keepAliveList] = useState(['permission-account'])
 
   useEffect(() => {
   })

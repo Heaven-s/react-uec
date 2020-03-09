@@ -1,1 +1,1 @@
-export { useKeepAliveEffect } from 'react-keep-alive';
+export { useKeepAliveEffect } from 'react-component-keepalive';
