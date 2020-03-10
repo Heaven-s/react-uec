@@ -3,12 +3,12 @@
 // const Account = lazy(() => import('../pages/permission/account'));
 // const Role = lazy(() => import('../pages/permission/role'));
 
-// import async from './async';
-// const Account = async(() => import(/* webpackChunkName: "account" */'../pages/permission/account'));
-// const Role = async(() => import(/* webpackChunkName: "role" */'../pages/permission/role'));
+import async from './async';
+const Account = async(() => import(/* webpackChunkName: "account" */'../pages/permission/account'));
+const Role = async(() => import(/* webpackChunkName: "role" */'../pages/permission/role'));
 
-import Account from '../pages/permission/account'
-import Role from '../pages/permission/role'
+// import Account from '../pages/permission/account'
+// import Role from '../pages/permission/role'
 
 interface routerInterface {
   path: string,

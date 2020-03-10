@@ -1,12 +1,11 @@
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   HashRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
 import {
-  Provider,
-  KeepAlive
+  Provider
 } from 'react-component-keepalive';
 
 import './index.scss';
@@ -15,17 +14,12 @@ import Menu from './menu';
 import Navbar from './navbar';
 
 function RouteWithSubRoutes(route) {
-  const createRouteName = (path = '') => {
-    if (path === '/') return 'home'
-    return path.substring(1).replace(/\/:/g, '/').replace(/\//g, '-')
-  }
-  const name = createRouteName(route.path)
   return (
     <Route
       path={route.path}
       render={props => (
         // pass the sub-routes down to keep nesting
-        <KeepAlive name={name}><route.component {...props} routes={route.routes} /></KeepAlive>
+        <route.component {...props} routes={route.routes} />
       )}
     />
   );
@@ -52,13 +46,6 @@ function Page() {
             <Menu />
             <div className="content">
               <Navbar />
-              {/* <Suspense fallback={<div>Loading...</div>}>
-                <Switch>
-                  {routes.map((route, i) => (
-                    <RouteWithSubRoutes key={i} {...route} />
-                  ))}
-                </Switch>
-              </Suspense> */}
               <Switch>
                 {routes.map((route, i) => (
                   <RouteWithSubRoutes key={i} {...route} />

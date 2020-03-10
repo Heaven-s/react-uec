@@ -1,63 +1,26 @@
 import React from 'react'
+import { KeepAlive } from 'react-component-keepalive';
+import { history, formatRoutePath } from 'utils'
+
 
 export default function asyncComponent(componentfn) {
-    class LazyloadComponent extends React.Component {
-        constructor(props) {
-            super(props);
-            this.state = {
-                component: null
-            }
-        }
-        async componentWillMount() {
-            const {default: component} = await componentfn();
-            this.setState({component})
-        }
-        render() {
-            const C = this.state.component;
-            return C ? <C {...this.props}/> : null;
-        }
-    }
-    return LazyloadComponent;
+	class LazyloadComponent extends React.Component {
+		constructor(props) {
+			super(props);
+			this.state = {
+				component: null
+			}
+		}
+		async UNSAFE_componentWillMount() {
+			const { default: component } = await componentfn();
+			this.setState({ component })
+		}
+		render() {
+			const C = this.state.component;
+			const N = formatRoutePath(history.location.pathname)
+			C && console.log('pathname', N)
+			return C ? <KeepAlive name={N}><C {...this.props} /></KeepAlive> : null;
+		}
+	}
+	return LazyloadComponent;
 }
-
-// /**
-//  * 异步加载模块
-//  * @param loadComponent
-//  */
-// export default function asyncComponent(loadComponent) {
-//     class AsyncComponent extends React.Component {
-//         constructor(props) {
-//             super(props);
-//             this.state = {
-//                 Component: null
-//             }
-//         }
-
-//         componentWillMount() {
-//             if (this.hasLoadedComponent()) {
-//                 return
-//             }
-
-//             loadComponent()
-//                 //  取到module的default作为组件，因为我们导出组件的时候使用的是 export default
-//                 //  export default = (const default = Module ; export default )  所以导出的名称是default
-//                 .then(module => module.default)
-//                 .then((Component) => {
-//                     this.setState({Component})
-//                 })
-//                 .catch((err) => {
-//                     console.error(`Cannot load component in <AsyncComponent />`);
-//                     throw err
-//                 })
-//         }
-
-//         hasLoadedComponent() {
-//             return this.state.Component !== null
-//         }
-
-//         render() {
-//             const {Component} = this.state;
-//             return (Component) ? <Component {...this.props} /> : null
-//         }
-//     }
-// );
