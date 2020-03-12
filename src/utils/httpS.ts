@@ -1,4 +1,5 @@
 import Axios from 'axios'
+import { genPromise } from 'utils'
 
 interface optionsInterface {
   isCancel: boolean
@@ -52,23 +53,19 @@ export default class Http {
     // 中断请求
     if (options.isCancel) return
 
+    let promise = genPromise()
+
     let responsePromise = this.responseObj(requestConfig)
 
     responsePromise.then((response) => {
-      return Promise.reject(data)
+      promise.resolve(response)
     })
     // 服务器响应错误
     .catch((error) => {
-      resolvePromise.rejectHandle(error)
-
-      const errorHandlers = this.config.errorHandlers
-      // 遍历errorHandlers
-      for (let key in errorHandlers) {
-        errorHandlers[key](requestConfig, error, options)
-      }
+      promise.reject(error)
     })
 
-    return resolvePromise
+    return promise
 
   }
 }

@@ -5,10 +5,15 @@ export const formatRoutePath = function(path: string): string {
   return path.substring(1).replace(/\/:/g, '/').replace(/\//g, '-')
 }
 
+interface genPromiseInterface {
+  resolve?: any,
+  reject?: any
+}
+
 export const genPromise = () => {
   let resolveHandle
   let rejectHandle
-  let promise: any = new Promise((resolve, reject) => {
+  let promise: Promise<any> & genPromiseInterface = new Promise((resolve, reject) => {
     resolveHandle = (response: any) => {
       resolve(response)
     }
@@ -16,7 +21,7 @@ export const genPromise = () => {
       reject(response)
     }
   })
-  promise.resolveHandle = resolveHandle
-  promise.rejectHandle = rejectHandle
+  promise.resolve = resolveHandle
+  promise.reject = rejectHandle
   return promise
 }
