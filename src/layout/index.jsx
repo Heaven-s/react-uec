@@ -26,7 +26,7 @@ function RouteWithSubRoutes(route) {
 }
 
 function Page() {
-  const [keepAliveList] = useState(['permission-account'])
+  const [keepAliveList] = useState(['permission-account', 'permission-role'])
 
   useEffect(() => {
   })
