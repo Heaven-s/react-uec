@@ -14,7 +14,11 @@
     "antd": "^4.0.0",
     "axios": "^0.19.2",
     "babel-plugin-import": "^1.13.0",
+    "concurrently": "^5.1.0",
     "customize-cra": "^0.9.1",
+    "http-proxy-middleware": "^1.0.1",
+    "mocker-api": "^1.13.1",
+    "mockjs": "^1.1.0",
     "node-sass": "^4.13.1",
     "react": "^16.13.0",
     "react-app-rewired": "^2.1.5",
@@ -26,10 +30,11 @@
     "typescript": "^3.8.2"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "dev": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev:mock": "concurrently \"mocker ./src/mock\" \"PROXY_ENV=mock react-app-rewired start\" "
   },
   "eslintConfig": {
     "extends": "react-app"

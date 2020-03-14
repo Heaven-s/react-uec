@@ -1,6 +1,5 @@
-import Axios from 'axios'
 import { genPromise } from 'utils'
-import { optionsInterface, Method, requestConfigInterface, requestPromiseFunc } from './interface'
+import { optionsInterface, Method, requestPromiseFunc } from './interface'
 
 export interface sendFunc{
   (any: any): Promise<any>
@@ -12,16 +11,6 @@ export default class Http {
   constructor (options: optionsInterface, requestPromise: requestPromiseFunc) {
     this.defaultOptions = options
     this.requestPromise = requestPromise
-  }
-
-  responseObj (requestConfig: requestConfigInterface) {
-    let { header, method, url, data } = requestConfig
-    return Axios({
-      method,
-      url,
-      data,
-      headers: header
-    })
   }
 
   send (method: Method, url: string, data: object = {}, options: optionsInterface = {}): Promise<any> {

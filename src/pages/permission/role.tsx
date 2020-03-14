@@ -11,6 +11,10 @@ function Page() {
 
   useEffect(() => {
     console.log('useEffect')
+    http.post('/api/list', { id: 5 }).then((res) => {
+      console.log(res)
+    })
+    console.log('++++')
     return () => {
       console.log('unuseEffect')
     };
@@ -18,10 +22,9 @@ function Page() {
 
   useKeepAliveEffect(() => {
     if (!items.length) {
-      http.get('/mock/permission.role.json').then((res) => {
+      http.get('/api/user').then((res) => {
         console.log('suc')
         setItems(res.rows)
-        
       }).catch((error) => {
         console.log('error')
         console.log(error)
