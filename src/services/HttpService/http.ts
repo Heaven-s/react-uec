@@ -1,6 +1,6 @@
 import { genPromise } from 'utils'
 import { optionsInterface, Method, requestPromiseFunc } from './interface'
-
+const BASE_PATH = '/api'
 export interface sendFunc{
   (any: any): Promise<any>
 }
@@ -17,7 +17,7 @@ export default class Http {
     const requestConfig = {
       header: {},
       method,
-      url,
+      url: BASE_PATH + url,
       data
     }
 

@@ -1,10 +1,13 @@
 const mockjs = require('mockjs')
 const delay = require('mocker-api/utils/delay')
-const DELAY_TIMER = 1000
+const DELAY_TIMER = 0
 
 const json = (mock) => {
   return (req, res) => {
-    req.body && console.log(req.body)
+
+    Object.keys(req.query).length && console.log('[QUERY]', req.query)
+    Object.keys(req.body).length && console.log('[BODY]', req.body)
+
     res.send(mock)
   }
 }
@@ -32,7 +35,15 @@ const data = {
     mockjs.mock({
       'list|10-100': 1
     })
-  )
+  ),
+  'POST /list2': (req, res) => {
+
+    let data = { id: 0 }
+    if (req.body.id === 1) {
+      data = { id: 1 }
+    }
+    json(data)(req, res)
+  }
 }
 
 module.exports = delay(data, DELAY_TIMER)

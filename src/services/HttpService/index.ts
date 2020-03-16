@@ -4,12 +4,17 @@ import { requestPromiseFunc, requestConfigInterface} from './interface'
 
 const requestPromise: requestPromiseFunc = (requestConfig: requestConfigInterface) => {
   let { header, method, url, data } = requestConfig
-  return Axios({
+  const config: any = {
     method,
     url,
-    data,
     headers: header
-  })
+  }
+  if (method === 'get' || method === 'GET') {
+    config.params = data
+  } else {
+    config.data = data
+  }
+  return Axios(config)
 }
 
 export default new Http({

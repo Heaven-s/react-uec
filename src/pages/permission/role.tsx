@@ -11,9 +11,9 @@ function Page() {
 
   useEffect(() => {
     console.log('useEffect')
-    // http.post('/api/list', { id: 5 }).then((res) => {
-    //   console.log(res)
-    // })
+    http.post('/list2', { id: 0 }).then((res) => {
+      console.log(res)
+    })
     console.log('++++')
     return () => {
       console.log('unuseEffect')
@@ -22,7 +22,7 @@ function Page() {
 
   useKeepAliveEffect(() => {
     if (!items.length) {
-      http.get('/api/user', { id: 2 }).then((res) => {
+      http.get('/user', { id: 2 }).then((res) => {
         console.log('suc')
         setItems(res.rows)
       }).catch((error) => {
