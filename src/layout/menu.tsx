@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from 'react';
 
-import { history } from 'utils'
+import { history } from 'utils';
 // import { useHistory } from 'hooks'
-import Uec from 'uec'
+import Uec from 'uec';
 
 const {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   PieChartOutlined,
-  DesktopOutlined
-} = Uec
+  DesktopOutlined,
+} = Uec;
 
 function Page() {
-  
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = useState(false);
 
   // let history = useHistory();
 
-  useEffect(() => {
-  })
+  useEffect(() => {});
 
   return (
-    <div className={ `menu${collapsed ? ' menu-collapsed' : ''}` }>
+    <div className={`menu${collapsed ? ' menu-collapsed' : ''}`}>
       <div className="menu-content">
         <Uec.Menu
           defaultSelectedKeys={['1']}
@@ -30,19 +28,31 @@ function Page() {
           theme="light"
           inlineCollapsed={collapsed}
         >
-          <Uec.Menu.Item key="1" onClick={() => history.push("/permission/account")}>
+          <Uec.Menu.Item
+            key="1"
+            onClick={() => history.push('/permission/account')}
+          >
             <PieChartOutlined />
             <span>员工管理</span>
           </Uec.Menu.Item>
-          <Uec.Menu.Item key="2" onClick={() => history.push("/permission/role")}>
+          <Uec.Menu.Item
+            key="2"
+            onClick={() => history.push('/permission/role')}
+          >
             <DesktopOutlined />
             <span>角色管理</span>
           </Uec.Menu.Item>
         </Uec.Menu>
       </div>
       <div className="menu-collapse">
-        <Uec.Button type="primary" size="small" onClick={() => setCollapsed(!collapsed)}>
-          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
+        <Uec.Button
+          type="primary"
+          size="small"
+          onClick={() => setCollapsed(!collapsed)}
+        >
+          {React.createElement(
+            collapsed ? MenuUnfoldOutlined : MenuFoldOutlined
+          )}
         </Uec.Button>
       </div>
     </div>
